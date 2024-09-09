@@ -35,6 +35,10 @@ systemctl start codedeploy-agent
 
 ### Step 1: Create a CodeCommit Repository
 
+```
+sudo yum install git -y
+git --version
+```
 1. **Create Repository in CodeCommit:**
    - Open the AWS Management Console and go to **CodeCommit**.
    - Create a new repository named `SampleWebApp`.
@@ -46,7 +50,14 @@ systemctl start codedeploy-agent
    ```
 
 ### Step 2: Create a Simple Node.js Application
-
+```
+sudo yum install npm -y
+npm --version
+```
+```
+mkdir sample-web-app
+cd sample-web-app
+```
 1. **Initialize a Node.js project:**
    ```bash
    npm init -y
@@ -83,6 +94,11 @@ systemctl start codedeploy-agent
 ### Step 3: Create a BuildSpec File for CodeBuild
 
 1. **Create `buildspec.yml`** in the root of your repository:
+
+   ```
+   touch buildspec.yml
+   sudo nano buildspec.yml
+   ```
    ```yaml
    version: 0.2
 
@@ -100,6 +116,11 @@ systemctl start codedeploy-agent
 ### Step 4: Create an AppSpec File for CodeDeploy
 
 1. **Create a `appspec.yml`** in the root of your repository:
+
+   ```
+   touch appspec.yml
+   sudo nano appspec.yml
+   ```
    ```yaml
    version: 0.0
    os: linux
@@ -123,6 +144,10 @@ systemctl start codedeploy-agent
 1. **Create a directory `scripts/`** and add the following files:
 
    **`install_dependencies.sh`**
+   ```
+   touch install_dependencies.sh
+   sudo nano install_dependencies.sh
+   ```
    ```bash
    #!/bin/bash
    cd /home/ec2-user/sample-web-app
@@ -130,13 +155,17 @@ systemctl start codedeploy-agent
    ```
 
    **`start_server.sh`**
+   ```
+   touch start_server.sh
+   sudo nano start_server.sh
+   ```
    ```bash
    #!/bin/bash
    cd /home/ec2-user/sample-web-app
    npm start &
    ```
 
-2. **Make the scripts executable:**
+3. **Make the scripts executable:**
    ```bash
    chmod +x scripts/*.sh
    ```
