@@ -10,12 +10,27 @@ A simple Node.js web server application demonstrating the use of AWS CodeCommit,
 - EC2 Deployment
 - DevOps
 
+```
+cd Downloads
+ssh -i "terraformkey.pem" ec2-user@ec2-54-84-239-38.compute-1.amazonaws.com
+```
+
 ### Prerequisites:
-1. **AWS CLI** installed and configured.
+1. **AWS CLI** installed and configured. [Download and install AWS CLI](https://aws.amazon.com/cli/)
 2. **IAM Role** with necessary permissions (CodeCommit, CodeBuild, CodeDeploy, EC2 access).
 3. **EC2 Instance** running Amazon Linux 2 or another supported platform.
 4. **AWS CodeDeploy agent** installed on the EC2 instance.
-
+// Install the CodeDeploy agent for Amazon Linux or RHEL
+```
+sudo yum update -y
+sudo yum install ruby -y
+sudo yum install wget -y
+wget https://aws-codedeploy-us-east-2.s3.us-east-2.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+systemctl status codedeploy-agent
+systemctl start codedeploy-agent
+```
 ---
 
 ### Step 1: Create a CodeCommit Repository
